@@ -1,83 +1,116 @@
 class CompNavbar extends HTMLElement {
   connectedCallback() {
     this.render();
+    this.handleScroll();
+  }
+
+  handleScroll() {
+    let lastScrollTop = 0;
+    const navbar = this.querySelector(".fixed");
+    const title = this.querySelector(".title a");
+    const subTitle = this.querySelector(".title span");
+
+    window.addEventListener("scroll", () => {
+      const currentScrollTop = window.scrollY;
+
+      if (currentScrollTop > lastScrollTop) {
+        // Scrolling down
+        navbar.classList.add("opacity-0", "lg:transform", "translate-y-[-100%]", "transition-transform", "ease-in-out", "duration-300");
+        navbar.classList.remove("opacity-100", "lg:transform", "lg:translate-y-0");
+      } else {
+        // Scrolling up
+        navbar.classList.remove("opacity-0", "lg:transform", "translate-y-[-100%]");
+        navbar.classList.add("opacity-100", "lg:transform", "lg:translate-y-0", "transition-transform", "ease-in-out", "duration-300");
+      }
+
+      // Update lastScrollTop
+      lastScrollTop = currentScrollTop;
+
+      if (currentScrollTop > 0) {
+        // Scrolling down
+        navbar.classList.add("bg-dark", "shadow-sm", "shadow-black");
+        title.classList.add("text-red-400");
+        subTitle.classList.add("text-white");
+      } else {
+        // Scrolling up
+        navbar.classList.remove("bg-dark", "shadow-sm", "shadow-black");
+        title.classList.remove("text-red-400");
+        subTitle.classList.remove("text-white");
+      }
+    });
   }
 
   render() {
     this.innerHTML = `
     <header>
-    <div class="fixed w-full top-0 left-0 z-20 border-b bg-white">
-      <div class="px-6 lg:container md:px-12 lg:mx-auto lg:px-6 lg:py-3">
+    <div class="fixed w-full top-0 left-0 z-20">
+      <div class="px-4 lg:container md:px-12 lg:mx-auto lg:px-0 lg:py-3">
         <div class="flex items-center justify-between">
-          <div class="relative z-20">
-            <a href="#" class="text-3xl font-semibold">Find<span>Movies</span>.</a>
+          <div class="relative z-20 title">
+            <a href="#" class="text-2xl md:text-4xl text-white font-semibold">Alahsia<span class="font-light">Movies</span>.</a>
           </div>
 
           <!-- Hamburger menu -->
-          <div class="flex items-center justify-end border-l lg:border-l-0">
+          <div class="flex items-center justify-end">
             <input type="checkbox" name="hamburger" id="hamburger" class="peer" hidden />
             <label for="hamburger" class="peer-checked:hamburger relative z-20 -mr-6 block cursor-pointer p-6 lg:hidden">
-              <div aria-hidden="true" class="m-auto h-0.5 w-6 rounded bg-sky-900 transition duration-300"></div>
-              <div aria-hidden="true" class="m-auto mt-2 h-0.5 w-6 rounded bg-sky-900 transition duration-300"></div>
+              <div aria-hidden="true" class="m-auto h-0.5 w-6 rounded bg-white transition duration-300"></div>
+              <div aria-hidden="true" class="m-auto mt-2 h-0.5 w-6 rounded bg-white transition duration-300"></div>
             </label>
 
             <!-- Links -->
-            <div class="fixed inset-0 w-[calc(100%-4.5rem)] translate-x-[-100%] border-r bg-white shadow-xl transition duration-300 peer-checked:translate-x-0 lg:static lg:w-auto lg:translate-x-0 lg:border-r-0 lg:shadow-none">
+            <div class="fixed inset-0 w-[calc(100%)] translate-x-[-100%] bg-dark lg:bg-transparent shadow-xl transition duration-300 peer-checked:translate-x-0 lg:static lg:w-auto lg:translate-x-0 lg:shadow-none">
               <div class="flex h-full flex-col justify-between lg:flex-row lg:items-center">
-                <ul class="space-y-8 px-6 pt-32 text-gray-700 md:px-12 lg:flex lg:space-x-12 lg:space-y-0 lg:pt-0 text-center">
-                  <!-- <li class="group bg-gradient-to-r lg:bg-none from-primary to-secondary w-full rounded-full py-2">
-                    <a href="" class="">Home</a>
-                  </li> -->
+                <ul class="space-y-8 px-6 pt-52 text-gray-300 md:px-0 lg:flex lg:space-x-12 lg:space-y-0 lg:pt-0 text-center">
+                <li>
+                <a
+                  href="#hero"
+                  class="group before:transition before:duration-200"
+                >
+                  <span class="relative group-hover:text-white text-white font-semibold">Home</span>
+                </a>
+              </li>
                   <li>
-                    <a href="" class="group relative before:absolute before:inset-x-0 before:bottom-0 before:h-2 before:bg-cyan-100">
-                      <span class="relative text-cyan-800">Home</span>
+                    <a
+                      href="#trending"
+                      class="group before:transition before:duration-200"
+                    >
+                      <span class="relative group-hover:text-white">Trending</span>
                     </a>
                   </li>
                   <li>
                     <a
-                      href=""
-                      class="group relative before:absolute before:inset-x-0 before:bottom-0 before:h-2 before:origin-right before:scale-x-0 before:bg-cyan-100 before:transition before:duration-200 hover:before:origin-left hover:before:scale-x-100"
+                      href="#genre"
+                      class="group before:transition before:duration-200"
                     >
-                      <span class="relative group-hover:text-cyan-800">Explore</span>
+                      <span class="relative group-hover:text-white">Genre</span>
                     </a>
                   </li>
                   <li>
                     <a
-                      href=""
-                      class="group relative before:absolute before:inset-x-0 before:bottom-0 before:h-2 before:origin-right before:scale-x-0 before:bg-cyan-100 before:transition before:duration-200 hover:before:origin-left hover:before:scale-x-100"
+                      href="#news"
+                      class="group before:transition before:duration-200"
                     >
-                      <span class="relative group-hover:text-cyan-800">Genre</span>
+                      <span class="relative group-hover:text-white">News</span>
                     </a>
                   </li>
                   <li>
                     <a
-                      href=""
-                      class="group relative before:absolute before:inset-x-0 before:bottom-0 before:h-2 before:origin-right before:scale-x-0 before:bg-cyan-100 before:transition before:duration-200 hover:before:origin-left hover:before:scale-x-100"
+                      href="#movies"
+                      class="group before:transition before:duration-200"
                     >
-                      <span class="relative group-hover:text-cyan-800">News</span>
+                      <span class="relative group-hover:text-white">Movies</span>
                     </a>
                   </li>
                   <li>
                     <a
-                      href=""
-                      class="group relative before:absolute before:inset-x-0 before:bottom-0 before:h-2 before:origin-right before:scale-x-0 before:bg-cyan-100 before:transition before:duration-200 hover:before:origin-left hover:before:scale-x-100"
+                      href="#tvshows"
+                      class="group before:transition before:duration-200"
                     >
-                      <span class="relative group-hover:text-cyan-800">Movies</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href=""
-                      class="group relative before:absolute before:inset-x-0 before:bottom-0 before:h-2 before:origin-right before:scale-x-0 before:bg-cyan-100 before:transition before:duration-200 hover:before:origin-left hover:before:scale-x-100"
-                    >
-                      <span class="relative group-hover:text-cyan-800">TV Shows</span>
+                      <span class="relative group-hover:text-white">TV Shows</span>
                     </a>
                   </li>
                 </ul>
-
-                <div class="border-t px-7 py-8 md:px-12 md:py-16 lg:border-l lg:border-t-0 lg:py-0 lg:pl-6 lg:pr-0">
-                  <a href="#" class="block rounded-full bg-gradient-to-r from-primary to-secondary px-6 lg:px-10 py-3 text-center text-white"> Get Started </a>
-                </div>
               </div>
             </div>
           </div>
@@ -85,7 +118,7 @@ class CompNavbar extends HTMLElement {
       </div>
     </div>
   </header>
-      `;
+    `;
   }
 }
 
