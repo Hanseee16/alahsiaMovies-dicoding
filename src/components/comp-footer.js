@@ -6,7 +6,7 @@ class CompFooter extends HTMLElement {
   render() {
     this.innerHTML = `
       <footer class="text-white py-4">
-        <div class="container mx-auto text-center">
+        <div class="container mx-auto text-center text-sm md:text-base">
           <p>&copy; 2024 <span class="text-primary">Alahsia Movies.</span> All rights reserved.</p>
         </div>
       </footer>

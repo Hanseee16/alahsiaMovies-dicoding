@@ -1,15 +1,15 @@
 import axios from "axios";
 
-class CompTrending extends HTMLElement {
+class CompPopular extends HTMLElement {
   connectedCallback() {
     this.render();
-    this.ambilDataFilmTrending();
+    this.ambilDataFilmUpPopular();
   }
 
-  async ambilDataFilmTrending() {
+  async ambilDataFilmUpPopular() {
     const options = {
       method: "GET",
-      url: "https://api.themoviedb.org/3/trending/all/day",
+      url: "https://api.themoviedb.org/3/tv/popular",
       params: { language: "en-US", page: "1" },
       headers: {
         accept: "application/json",
@@ -38,7 +38,7 @@ class CompTrending extends HTMLElement {
       elemenFilm.classList.add("w-1/2", "md:w-1/4", "lg:w-1/5", "px-5", "mb-10");
 
       elemenFilm.innerHTML = `
-        <a href="#">
+        <a href="">
           <img src="${urlGambar}" alt="${judul}" class="mx-auto rounded-md shadow-sm shadow-black mb-2">
           <p class="text-center text-white">${judul}</p>
         </a>
@@ -50,10 +50,10 @@ class CompTrending extends HTMLElement {
 
   render() {
     this.innerHTML = `
-      <section id="trending">
+      <section id="popular">
         <div class="container mx-auto py-20">
           <div class="w-full flex justify-between items-center px-4 md:px-0">
-            <h1 class="text-white text-xl md:text-3xl font-semibold">Trending</h1>
+            <h1 class="text-white text-2xl md:text-3xl font-semibold">Popular</h1>
             <a href="" class="text-slate-200 text-base">See All</a>
           </div>
           <div class="row flex flex-wrap justify-center items-center py-10 mt-7"></div>
@@ -63,4 +63,4 @@ class CompTrending extends HTMLElement {
   }
 }
 
-customElements.define("comp-trending", CompTrending);
+customElements.define("comp-popular", CompPopular);

@@ -72,34 +72,26 @@ class CompNavbar extends HTMLElement {
                   </li>
                   <li>
                     <a
-                      href="#genre"
+                      href="#toprated"
                       class="group before:transition before:duration-200"
                     >
-                      <span class="relative group-hover:text-white">Genre</span>
+                      <span class="relative group-hover:text-white">Top Rated</span>
                     </a>
                   </li>
                   <li>
                     <a
-                      href="#news"
+                      href="#upcoming"
                       class="group before:transition before:duration-200"
                     >
-                      <span class="relative group-hover:text-white">News</span>
+                      <span class="relative group-hover:text-white">Up Coming</span>
                     </a>
                   </li>
                   <li>
                     <a
-                      href="#movies"
+                      href="#popular"
                       class="group before:transition before:duration-200"
                     >
-                      <span class="relative group-hover:text-white">Movies</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#tvshows"
-                      class="group before:transition before:duration-200"
-                    >
-                      <span class="relative group-hover:text-white">TV Shows</span>
+                      <span class="relative group-hover:text-white">Popular</span>
                     </a>
                   </li>
                 </ul>

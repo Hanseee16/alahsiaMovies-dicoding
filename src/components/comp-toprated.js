@@ -1,15 +1,26 @@
-class CompNews extends HTMLElement {
+import axios from "axios";
+
+class CompTopRated extends HTMLElement {
   connectedCallback() {
     this.render();
-    this.ambilDataFilmTerbaru();
+    this.ambilDataFilmTopRated();
   }
 
-  async ambilDataFilmTerbaru() {
-    try {
-      const apiKey = "dcbe32390c7d6319acb086dc1a5c41c4";
-      const response = await fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}`);
-      const data = await response.json();
+  async ambilDataFilmTopRated() {
+    const options = {
+      method: "GET",
+      url: "https://api.themoviedb.org/3/movie/top_rated",
+      params: { language: "en-US", page: "1" },
+      headers: {
+        accept: "application/json",
+        Authorization:
+          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkY2JlMzIzOTBjN2Q2MzE5YWNiMDg2ZGMxYTVjNDFjNCIsInN1YiI6IjY1NjQ3N2UwMzY3OWExMDk3NjQ4NjQ2NiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.G7JHwBUBjccWaGHKFW9lJ6gg6J5-R_YC7KzCOhu9frI",
+      },
+    };
 
+    try {
+      const response = await axios.request(options);
+      const data = response.data;
       this.tampilkanFilm(data.results);
     } catch (error) {
       console.error("Error saat mengambil data:", error);
@@ -39,10 +50,10 @@ class CompNews extends HTMLElement {
 
   render() {
     this.innerHTML = `
-      <section id="news">
+      <section id="toprated">
         <div class="container mx-auto py-20">
           <div class="w-full flex justify-between items-center px-4 md:px-0">
-            <h1 class="text-white text-3xl font-semibold">News</h1>
+            <h1 class="text-white text-3xl font-semibold">Top Rated</h1>
             <a href="" class="text-slate-200 text-base">See All</a>
           </div>
           <div class="row flex flex-wrap justify-center items-center py-10 mt-7"></div>
@@ -52,4 +63,4 @@ class CompNews extends HTMLElement {
   }
 }
 
-customElements.define("comp-news", CompNews);
+customElements.define("comp-toprated", CompTopRated);
