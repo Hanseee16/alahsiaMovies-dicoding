@@ -4,4 +4,5 @@ import "./components/comp-hero";
 import "./components/comp-trending";
 import "./components/comp-genre";
 import "./components/comp-news";
+import "./components/comp-footer";
 import "./components/comp-backtotop";

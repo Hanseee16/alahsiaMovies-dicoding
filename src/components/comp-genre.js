@@ -61,7 +61,7 @@ class CompGenre extends HTMLElement {
         <div class="container mx-auto py-20">
           <div class="w-full flex justify-between items-center px-4 md:px-0">
             <h1 class="text-white text-3xl font-semibold">Genre</h1>
-            <a href="" class="text-slate-200 text-base">Lihat Lebih Banyak</a>
+            <a href="" class="text-slate-200 text-base">See All</a>
           </div>
           <div class="row flex flex-wrap justify-center items-center py-10 mt-7"></div>
         </div>

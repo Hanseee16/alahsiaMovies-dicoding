@@ -14,27 +14,22 @@ class CompNavbar extends HTMLElement {
       const currentScrollTop = window.scrollY;
 
       if (currentScrollTop > lastScrollTop) {
-        // Scrolling down
         navbar.classList.add("opacity-0", "lg:transform", "translate-y-[-100%]", "transition-transform", "ease-in-out", "duration-300");
         navbar.classList.remove("opacity-100", "lg:transform", "lg:translate-y-0");
       } else {
-        // Scrolling up
         navbar.classList.remove("opacity-0", "lg:transform", "translate-y-[-100%]");
         navbar.classList.add("opacity-100", "lg:transform", "lg:translate-y-0", "transition-transform", "ease-in-out", "duration-300");
       }
 
-      // Update lastScrollTop
       lastScrollTop = currentScrollTop;
 
       if (currentScrollTop > 0) {
-        // Scrolling down
         navbar.classList.add("bg-dark", "shadow-sm", "shadow-black");
-        title.classList.add("text-red-400");
+        title.classList.add("text-primary");
         subTitle.classList.add("text-white");
       } else {
-        // Scrolling up
         navbar.classList.remove("bg-dark", "shadow-sm", "shadow-black");
-        title.classList.remove("text-red-400");
+        title.classList.remove("text-primary");
         subTitle.classList.remove("text-white");
       }
     });
@@ -46,8 +41,8 @@ class CompNavbar extends HTMLElement {
     <div class="fixed w-full top-0 left-0 z-20">
       <div class="px-4 lg:container md:px-12 lg:mx-auto lg:px-0 lg:py-3">
         <div class="flex items-center justify-between">
-          <div class="relative z-20 title">
-            <a href="#" class="text-2xl md:text-4xl text-white font-semibold">Alahsia<span class="font-light">Movies</span>.</a>
+          <div class="relative z-20 title text-white">
+            <a href="#" class="text-2xl md:text-3xl font-bold">Alahsia<span class="font-extralight">Movies</span>.</a>
           </div>
 
           <!-- Hamburger menu -->
@@ -63,10 +58,7 @@ class CompNavbar extends HTMLElement {
               <div class="flex h-full flex-col justify-between lg:flex-row lg:items-center">
                 <ul class="space-y-8 px-6 pt-52 text-gray-300 md:px-0 lg:flex lg:space-x-12 lg:space-y-0 lg:pt-0 text-center">
                 <li>
-                <a
-                  href="#hero"
-                  class="group before:transition before:duration-200"
-                >
+                <a href="#hero" class="group nav-link before:transition before:duration-200">
                   <span class="relative group-hover:text-white text-white font-semibold">Home</span>
                 </a>
               </li>
